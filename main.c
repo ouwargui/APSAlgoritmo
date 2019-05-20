@@ -11,6 +11,7 @@ int main()
     int i, j, k = 0, opc, desvioAtv = 0, localMaior = 0, localMenor = 0;
     float mediaAlt = 0, desvio, medianaAlt = 0, altura[10], alturaTotal = 0, alturaTotal2 = 0, menor, maior;
     char matriz[10][50];
+    char f[10][50];
 
     menor = altura[0];
     maior = altura[0];
@@ -32,14 +33,14 @@ int main()
     system("CLS");
 
     for(i = 0; i < 10; i++){
-        printf("Digite o primeiro nome do %i∫ jogador: \n", (i + 1));
+        printf("Digite o primeiro nome do %i¬∫ jogador: \n", (i + 1));
         scanf("%s", matriz[i]);
         printf("Digite a altura desse jogador: \n");
         scanf("%f", &altura[i]);
         alturaTotal += altura[i];
         fflush(stdin);
         while(altura[i] <= 0){
-            printf("Este n˙mero È inv·lido, digite a altura novamente: \n");
+            printf("Este n√∫mero √© inv√°lido, digite a altura novamente: \n");
             scanf("%f", &altura[i]);
             alturaTotal += altura[i];
         }
@@ -71,42 +72,42 @@ int main()
         printf("======== TIME DE BASQUETE ========\n");
         printf("----------------------------------\n");
         printf("1 - Dados dos jogadores \n");
-        printf("2 - MÈdia das alturas\n");
-        printf("3 - Desvio padr„o das alturas\n");
+        printf("2 - M√©dia das alturas\n");
+        printf("3 - Desvio padr√£o das alturas\n");
         printf("4 - Maior e menor altura\n");
         printf("5 - Mediana das alturas\n");
         printf("6 - Finalizar\n");
-        printf("Digite uma opÁ„o: ");
+        printf("Digite uma op√ß√£o: ");
         scanf("%i", &opc);
 
 
         if(opc == 1){
             for(i = 0; i < 10; i++){
-                printf("O %i∫ jogador È o %s e ele tÍm %.2fm de altura.\n", (i + 1), matriz[i], altura[i]);
+                printf("O %i¬∫ jogador √© o %s e ele t√™m %.2fm de altura.\n", (i + 1), matriz[i], altura[i]);
             }
             printf("\n");
             Sleep(7000);
             system("CLS");
         }
         if(opc == 2){
-            printf("A mÈdia das alturas dos jogadores È: %.2f\n\n", mediaAlt);
+            printf("A m√©dia das alturas dos jogadores √©: %.2f\n\n", mediaAlt);
             desvioAtv = 1;
             Sleep(3000);
             system("CLS");
         }
         if(opc == 3){
             if(desvioAtv == 1){
-                printf("O desvio padr„o È: %.2f\n\n", desvio);
+                printf("O desvio padr√£o √©: %.2f\n\n", desvio);
             }
             else{
-                printf("VocÍ sÛ pode ver o desvio depois de calcular a mÈdia das alturas.\n\n");
+                printf("Voc√™ s√≥ pode ver o desvio depois de calcular a m√©dia das alturas.\n\n");
             }
             Sleep(3000);
             system("CLS");
         }
         if(opc == 4){
-            printf("O menor jogador È o: %s e ele tem %.2fm de altura.\n", matriz[localMenor], altura[localMenor]);
-            printf("O maior jogador È o: %s e ele tem %.2fm de altura.\n", matriz[localMaior], altura[localMaior]);
+            printf("O menor jogador √© o: %s e ele tem %.2fm de altura.\n", matriz[localMenor], altura[localMenor]);
+            printf("O maior jogador √© o: %s e ele tem %.2fm de altura.\n", matriz[localMaior], altura[localMaior]);
             Sleep(6000);
             system("CLS");
         }
@@ -117,6 +118,7 @@ int main()
                         k = altura[j];
                         altura[j] = altura[i];
                         altura[i] = k;
+                        strcpy(f[j], matriz[j]);
                     }
                 }
             }
@@ -133,35 +135,35 @@ int main()
         }
 
         while(opc < 1 || opc > 6){
-            printf("Digite uma opÁ„o v·lida: \n");
+            printf("Digite uma op√ß√£o v√°lida: \n");
             scanf("%i", &opc);
             if(opc == 1){
                 for(i = 0; i < 10; i++){
-                    printf("O %i∫ jogador È o %s e ele tÍm %.2fm de altura.\n", (i + 1), matriz[i], altura[i]);
+                    printf("O %i¬∫ jogador √© o %s e ele t√™m %.2fm de altura.\n", (i + 1), matriz[i], altura[i]);
                 }
                 printf("\n");
                 Sleep(7000);
                 system("CLS");
             }
             if(opc == 2){
-                printf("A mÈdia das alturas dos jogadores È: %.2f\n\n", mediaAlt);
+                printf("A m√©dia das alturas dos jogadores √©: %.2f\n\n", mediaAlt);
                 desvioAtv = 1;
                 Sleep(3000);
                 system("CLS");
             }
             if(opc == 3){
                 if(desvioAtv == 1){
-                    printf("O desvio padr„o È: %.2f\n\n", desvio);
+                    printf("O desvio padr√£o √©: %.2f\n\n", desvio);
                 }
                 else{
-                    printf("VocÍ sÛ pode ver o desvio depois de calcular a mÈdia das alturas.\n\n");
+                    printf("Voc√™ s√≥ pode ver o desvio depois de calcular a m√©dia das alturas.\n\n");
                 }
                 Sleep(3000);
                 system("CLS");
             }
             if(opc == 4){
-                printf("O menor jogador È o: %s e ele tem %.2fm de altura.\n", matriz[localMenor], altura[localMenor]);
-                printf("O maior jogador È o: %s e ele tem %.2fm de altura.\n", matriz[localMaior], altura[localMaior]);
+                printf("O menor jogador √© o: %s e ele tem %.2fm de altura.\n", matriz[localMenor], altura[localMenor]);
+                printf("O maior jogador √© o: %s e ele tem %.2fm de altura.\n", matriz[localMaior], altura[localMaior]);
                 Sleep(6000);
                 system("CLS");
             }
