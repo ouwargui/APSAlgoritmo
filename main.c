@@ -8,9 +8,11 @@
 int main()
 {
     setlocale(LC_CTYPE, "Portuguese");
-    int i, j, k = 0, opc, desvioAtv = 0, localMaior = 0, localMenor = 0;
-    float mediaAlt = 0, desvio, medianaAlt = 0, altura[10], alturaTotal = 0, alturaTotal2 = 0, menor, maior;
+    int i, j, opc, desvioAtv = 0, localMaior = 0, localMenor = 0;
+    float mediaAlt = 0, desvio, medianaAlt = 0, altura[10], alturaTotal = 0, alturaTotal2 = 0, menor, maior, alturaOpc5[10], k = 0;
     char matriz[10][50];
+    char matriz2[50];
+    char matrizOpc5[10][50];
 
     menor = altura[0];
     maior = altura[0];
@@ -28,13 +30,12 @@ int main()
     printf("Caique Sobral, R.A 21271755\n");
     printf("-----------------------------\n");
 
-    /*Sleep(5000);*/
+    Sleep(5000);
     system("CLS");
 
     for(i = 0; i < 10; i++){
         printf("Digite o primeiro nome do %iº jogador: \n", (i + 1));
         scanf("%s", matriz[i]);
-        scanf("%s", matriz2[i]);
         printf("Digite a altura desse jogador: \n");
         scanf("%f", &altura[i]);
         alturaTotal += altura[i];
@@ -45,7 +46,12 @@ int main()
             alturaTotal += altura[i];
         }
     }
-
+    for(i = 0; i < 10; i++){
+        alturaOpc5[i] = altura[i];
+    }
+    for(i = 0; i < 10; i++){
+        strcpy(matrizOpc5[i], matriz[i]);
+    }
     mediaAlt = (alturaTotal / 10);
     for(i = 0; i < 10; i++){
         alturaTotal2 += pow(altura[i], 2);
@@ -114,19 +120,23 @@ int main()
         if(opc == 5){
             for(j = 0; j < 10; j++){
                 for(i = j + 1; i < 10; i++){
-                    if(altura[j] > altura[i]){
-                        k = altura[j];
-                        altura[j] = altura[i];
-                        altura[i] = k;
-                        
+                    if(alturaOpc5[j] > alturaOpc5[i]){
+                        k = alturaOpc5[j];
+                        alturaOpc5[j] = alturaOpc5[i];
+                        alturaOpc5[i] = k;
+                        strcpy(matriz2, matrizOpc5[i]);
+                        strcpy(matrizOpc5[i], matrizOpc5[j]);
+                        strcpy(matrizOpc5[j], matriz2);
                     }
                 }
             }
             for(i = 0; i < 10; i++){
-            printf("%.2f\n", altura[i]);
+                printf("O %iº jogador na lista ordenada é o %s e ele têm %.2f m de altura.\n", (i + 1), matrizOpc5[i], alturaOpc5[i]);
             }
-            medianaAlt += ((altura[4] + altura[5]) / 2);
-            printf("%.2f\n", medianaAlt);
+            medianaAlt += ((alturaOpc5[4] + alturaOpc5[5]) / 2);
+            printf("A mediana das alturas é: %.2f\n", medianaAlt);
+            Sleep(7000);
+            system("CLS");
         }
         if(opc == 6){
             printf("Finalizando...");
@@ -170,18 +180,23 @@ int main()
             if(opc == 5){
                 for(j = 0; j < 10; j++){
                     for(i = j + 1; i < 10; i++){
-                        if(altura[j] > altura[i]){
-                            k = altura[j];
-                            altura[j] = altura[i];
-                            altura[i] = k;
+                        if(alturaOpc5[j] > alturaOpc5[i]){
+                            k = alturaOpc5[j];
+                            alturaOpc5[j] = alturaOpc5[i];
+                            alturaOpc5[i] = k;
+                            strcpy(matriz2, matrizOpc5[i]);
+                            strcpy(matrizOpc5[i], matrizOpc5[j]);
+                            strcpy(matrizOpc5[j], matriz2);
                         }
                     }
                 }
                 for(i = 0; i < 10; i++){
-                    printf("%.2f\n", altura[i]);
+                    printf("O %iº jogador na lista ordenada é o %s e ele têm %.2fm de altura.\n", (i + 1), matrizOpc5[i], alturaOpc5[i]);
                 }
-                medianaAlt += ((altura[4] + altura[5]) / 2);
-                printf("%.2f\n", medianaAlt);
+                medianaAlt += ((alturaOpc5[4] + alturaOpc5[5]) / 2);
+                printf("A mediana das alturas é: %.2f\n", medianaAlt);
+                Sleep(7000);
+                system("CLS");
             }
             if(opc == 6){
             printf("Finalizando...");
@@ -189,7 +204,7 @@ int main()
             exit(0);
             }
         }
+        medianaAlt = 0;
     }
-
     return 0;
 }
