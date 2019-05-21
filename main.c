@@ -11,7 +11,6 @@ int main()
     int i, j, k = 0, opc, desvioAtv = 0, localMaior = 0, localMenor = 0;
     float mediaAlt = 0, desvio, medianaAlt = 0, altura[10], alturaTotal = 0, alturaTotal2 = 0, menor, maior;
     char matriz[10][50];
-    char f[10][50];
 
     menor = altura[0];
     maior = altura[0];
@@ -35,6 +34,7 @@ int main()
     for(i = 0; i < 10; i++){
         printf("Digite o primeiro nome do %iº jogador: \n", (i + 1));
         scanf("%s", matriz[i]);
+        scanf("%s", matriz2[i]);
         printf("Digite a altura desse jogador: \n");
         scanf("%f", &altura[i]);
         alturaTotal += altura[i];
@@ -118,7 +118,7 @@ int main()
                         k = altura[j];
                         altura[j] = altura[i];
                         altura[i] = k;
-                        strcpy(f[j], matriz[j]);
+                        
                     }
                 }
             }
