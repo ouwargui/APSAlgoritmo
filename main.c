@@ -8,14 +8,11 @@
 int main()
 {
     setlocale(LC_CTYPE, "Portuguese");
-    int i, j, opc, desvioAtv = 0, localMaior = 0, localMenor = 0;
+    int i, j, c, opc, desvioAtv = 0, localMaior = 0, localMenor = 0;
     float mediaAlt = 0, desvio, medianaAlt = 0, altura[10], alturaTotal = 0, alturaTotal2 = 0, menor, maior, alturaOpc5[10], k = 0;
     char matriz[10][50];
     char matriz2[50];
     char matrizOpc5[10][50];
-
-    menor = altura[0];
-    maior = altura[0];
 
     printf("Feito por: \n");
     printf("-----------------------------\n");
@@ -56,12 +53,16 @@ int main()
     for(i = 0; i < 10; i++){
         alturaTotal2 += pow(altura[i], 2);
     }
+
     desvio = ((alturaTotal2 - alturaTotal) - mediaAlt);
 
-    for(i = 0; i < 10; i++){
-        if(altura[i] < menor){
-            menor = altura[i];
-            localMenor = i;
+    maior = altura[0];
+    menor = altura[0];
+
+    for(c = 0; c < 10; c++){
+        if(altura[c] < menor){
+            menor = altura[c];
+            localMenor = c;
         }
     }
     for(j = 0; j < 10; j++){
@@ -87,81 +88,22 @@ int main()
         scanf("%i", &opc);
 
 
-        if(opc == 1){
-            for(i = 0; i < 10; i++){
-                printf("O %iº jogador é o %s e ele têm %.2fm de altura.\n", (i + 1), matriz[i], altura[i]);
-            }
-            printf("\n");
-            Sleep(7000);
-            system("CLS");
-        }
-        if(opc == 2){
-            printf("A média das alturas dos jogadores é: %.2f\n\n", mediaAlt);
-            desvioAtv = 1;
-            Sleep(3000);
-            system("CLS");
-        }
-        if(opc == 3){
-            if(desvioAtv == 1){
-                printf("O desvio padrão é: %.2f\n\n", desvio);
-            }
-            else{
-                printf("Você só pode ver o desvio depois de calcular a média das alturas.\n\n");
-            }
-            Sleep(3000);
-            system("CLS");
-        }
-        if(opc == 4){
-            printf("O menor jogador é o: %s e ele tem %.2fm de altura.\n", matriz[localMenor], altura[localMenor]);
-            printf("O maior jogador é o: %s e ele tem %.2fm de altura.\n", matriz[localMaior], altura[localMaior]);
-            Sleep(6000);
-            system("CLS");
-        }
-        if(opc == 5){
-            for(j = 0; j < 10; j++){
-                for(i = j + 1; i < 10; i++){
-                    if(alturaOpc5[j] > alturaOpc5[i]){
-                        k = alturaOpc5[j];
-                        alturaOpc5[j] = alturaOpc5[i];
-                        alturaOpc5[i] = k;
-                        strcpy(matriz2, matrizOpc5[i]);
-                        strcpy(matrizOpc5[i], matrizOpc5[j]);
-                        strcpy(matrizOpc5[j], matriz2);
-                    }
-                }
-            }
-            for(i = 0; i < 10; i++){
-                printf("O %iº jogador na lista ordenada é o %s e ele têm %.2f m de altura.\n", (i + 1), matrizOpc5[i], alturaOpc5[i]);
-            }
-            medianaAlt += ((alturaOpc5[4] + alturaOpc5[5]) / 2);
-            printf("A mediana das alturas é: %.2f\n", medianaAlt);
-            Sleep(7000);
-            system("CLS");
-        }
-        if(opc == 6){
-            printf("Finalizando...");
-            Sleep(3000);
-            exit(0);
-        }
-
-        while(opc < 1 || opc > 6){
-            printf("Digite uma opção válida: \n");
-            scanf("%i", &opc);
-            if(opc == 1){
+        switch(opc){
+            case(1):
                 for(i = 0; i < 10; i++){
                     printf("O %iº jogador é o %s e ele têm %.2fm de altura.\n", (i + 1), matriz[i], altura[i]);
                 }
-                printf("\n");
-                Sleep(7000);
-                system("CLS");
-            }
-            if(opc == 2){
+                    printf("\n");
+                    Sleep(7000);
+                    system("CLS");
+            break;
+            case(2):
                 printf("A média das alturas dos jogadores é: %.2f\n\n", mediaAlt);
                 desvioAtv = 1;
                 Sleep(3000);
                 system("CLS");
-            }
-            if(opc == 3){
+            break;
+            case(3):
                 if(desvioAtv == 1){
                     printf("O desvio padrão é: %.2f\n\n", desvio);
                 }
@@ -170,14 +112,14 @@ int main()
                 }
                 Sleep(3000);
                 system("CLS");
-            }
-            if(opc == 4){
-                printf("O menor jogador é o: %s e ele tem %.2fm de altura.\n", matriz[localMenor], altura[localMenor]);
-                printf("O maior jogador é o: %s e ele tem %.2fm de altura.\n", matriz[localMaior], altura[localMaior]);
-                Sleep(6000);
+            break;
+            case(4):
+                printf("O menor jogador é o %s e ele tem %.2fm de altura.\n", matriz[localMenor], altura[localMenor]);
+                printf("O maior jogador é o %s e ele tem %.2fm de altura.\n", matriz[localMaior], altura[localMaior]);
+                Sleep(5000);
                 system("CLS");
-            }
-            if(opc == 5){
+            break;
+            case(5):
                 for(j = 0; j < 10; j++){
                     for(i = j + 1; i < 10; i++){
                         if(alturaOpc5[j] > alturaOpc5[i]){
@@ -191,20 +133,24 @@ int main()
                     }
                 }
                 for(i = 0; i < 10; i++){
-                    printf("O %iº jogador na lista ordenada é o %s e ele têm %.2fm de altura.\n", (i + 1), matrizOpc5[i], alturaOpc5[i]);
+                    printf("O %iº jogador na lista ordenada é o %s e ele têm %.2f m de altura.\n", (i + 1), matrizOpc5[i], alturaOpc5[i]);
                 }
                 medianaAlt += ((alturaOpc5[4] + alturaOpc5[5]) / 2);
                 printf("A mediana das alturas é: %.2f\n", medianaAlt);
+                medianaAlt = 0;
                 Sleep(7000);
                 system("CLS");
-            }
-            if(opc == 6){
-            printf("Finalizando...");
-            Sleep(3000);
-            exit(0);
-            }
+            break;
+            case(6):
+                printf("Finalizando...");
+                Sleep(2000);
+                exit(0);
+            break;
+            default:
+                printf("Opção inválida\n");
+                Sleep(1000);
+                system("CLS");
         }
-        medianaAlt = 0;
     }
     return 0;
 }
